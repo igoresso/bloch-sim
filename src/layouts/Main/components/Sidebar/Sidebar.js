@@ -4,15 +4,9 @@ import { makeStyles } from '@material-ui/styles';
 import { Drawer } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    backgroundColor: theme.palette.white,
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100%',
-    padding: theme.spacing(2)
-  },
   drawer: {
-    width: 260,
+    width: 280,
+    padding: theme.spacing(3),
     [theme.breakpoints.up('lg')]: {
       marginTop: 64,
       height: 'calc(100% - 64px)'
@@ -21,7 +15,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Sidebar = props => {
-  const { open, handleSidebarClose, variant } = props;
+  const { isOpen, handleSidebarClose, variant, children } = props;
 
   const classes = useStyles();
 
@@ -30,18 +24,19 @@ const Sidebar = props => {
       anchor="left"
       classes={{ paper: classes.drawer }}
       onClose={handleSidebarClose}
-      open={open}
+      open={isOpen}
       variant={variant}
     >
-      <span>Text</span>
+      {children}
     </Drawer>
   );
 };
 
 Sidebar.propTypes = {
-  open: PropTypes.bool.isRequired,
+  isOpen: PropTypes.bool.isRequired,
   handleSidebarClose: PropTypes.func,
-  variant: PropTypes.string.isRequired
+  variant: PropTypes.string.isRequired,
+  children: PropTypes.node
 };
 
 export default Sidebar;
