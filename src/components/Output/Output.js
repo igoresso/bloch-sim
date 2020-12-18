@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import { Pulse, Magnetisation } from './components'
+import { Pulse, Magnetisation, Sphere } from './components'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -14,12 +14,17 @@ const Simulation = () => {
 
   return (
     <Grid container spacing={1}>
-      <Grid item xs={12} lg={6}>
+      <Grid item xs={12} lg={6} xl={4}>
         <Paper className={classes.card} variant="outlined">
           <Pulse />
         </Paper>
       </Grid>
-      <Grid item xs={12} lg={6}>
+      <Grid item xs={12} lg={6} xl={4}>
+        <Paper className={classes.card} variant="outlined">
+          <Sphere />
+        </Paper>
+      </Grid>
+      <Grid item xs={12} lg={6} xl={4}>
         <Paper className={classes.card} variant="outlined">
           <Magnetisation />
         </Paper>
