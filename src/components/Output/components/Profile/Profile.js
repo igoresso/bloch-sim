@@ -27,7 +27,7 @@ const Profile = () => {
       mode: "lines",
       line: {
         width: 3,
-        color: '#598cb1',
+        color: '#ff7eb8',
       },
       x: output.z_vec,
       y: output.SPxy_vec
@@ -39,7 +39,7 @@ const Profile = () => {
       visible: "legendonly",
       line: {
         width: 3,
-        color: '#958ad0',
+        color: '#ff8f7b',
       },
       x: output.z_vec,
       y: output.SPx_vec
@@ -51,7 +51,7 @@ const Profile = () => {
       visible: "legendonly",
       line: {
         width: 3,
-        color: '#eb79bb',
+        color: '#fbb84d',
       },
       x: output.z_vec,
       y: output.SPy_vec
@@ -63,7 +63,7 @@ const Profile = () => {
       visible: "legendonly",
       line: {
         width: 3,
-        color: '#ff7874',
+        color: '#b7e15d',
       },
       x: output.z_vec,
       y: output.SPz_vec
