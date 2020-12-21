@@ -1,5 +1,7 @@
 {
   "name": "bloch-sim",
+  "description": "Bloch Equation Simulator",
+  "homepage": "http://igoresso.github.io/bloch-sim",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -20,11 +22,15 @@
     "react-scripts": "4.0.1",
     "redux": "^4.0.5"
   },
+  "devDependencies": {
+    "gh-pages": "^3.1.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

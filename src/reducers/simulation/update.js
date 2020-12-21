@@ -1,4 +1,5 @@
 import generatePulse from './generatePulse';
+import generateGradient from './generateGradient';
 
 const update = (state, payload) => {
   for (let [key, value] of Object.entries(payload)) {
@@ -75,11 +76,32 @@ const update = (state, payload) => {
           ...{ [key]: value }
         }
         break
-      case 'Gz':
+      case 'amp_Gz':
         params = {
           ...state.params,
           ...{ [key]: value }
         }
+        break
+      case 'l_profile':
+        params = {
+          ...state.params,
+          ...{ [key]: value },
+          ...{ dl_profile: value/state.params.N_profile }
+        };
+        break
+      case 'N_profile':
+        params = {
+          ...state.params,
+          ...{ [key]: value },
+          ...{ dl_profile: state.params.l_profile/value }
+        };
+        break
+      case 'dl_profile':
+        params = {
+          ...state.params,
+          ...{ [key]: value },
+          ...{ dl_profile: state.params.N_profile*value }
+        };
         break
       case 'isBusy':
           params = {
@@ -91,7 +113,12 @@ const update = (state, payload) => {
         return state;
     }
 
-    output = generatePulse(params, state.output);
+    output = {
+      ...state.output,
+      ...generatePulse(params),
+      ...generateGradient(params)
+    }
+
     return { params, output }
   }
 }

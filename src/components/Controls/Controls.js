@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { update, simulate, clear } from '../../actions/simulation';
+import { update, simulate, estimateProfile, clear } from '../../actions/simulation';
 import { Grid, TextField, Typography, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
@@ -44,6 +44,7 @@ const Controls = () => {
       isBusy: true
     }));
     dispatch(simulate())
+    dispatch(estimateProfile())
   }
 
   return (
@@ -237,16 +238,65 @@ const Controls = () => {
         <Grid item xs={6}>
           <TextField
             label={<>G<sub>z</sub> (mT/m)</>}
-            id="Gz"
-            name="Gz"
+            id="amp_Gz"
+            name="amp_Gz"
             type="number"
             inputProps={{ step:'any', min: 0 }}
-            value={isActive ? formState.Gz : params.Gz }
+            value={isActive ? formState.amp_Gz : params.amp_Gz }
             onChange={handleFieldChange}
             onBlur={updateParameter}
             margin="dense"
             variant="outlined"
-            disabled
+          />
+        </Grid>
+      </Grid>
+      <Typography variant="h6" component="h2" align="center">
+        Slice Profile
+      </Typography>
+      <Grid container spacing={1} m={2} className={classes.root}>
+        <Grid item xs={6}>
+          <TextField
+            label="l (mm)"
+            id="l_profile"
+            name="l_profile"
+            type="number"
+            inputProps={{ step:'any', min: 0 }}
+            value={isActive ? formState.l_profile : params.l_profile }
+            onChange={handleFieldChange}
+            onBlur={updateParameter}
+            margin="dense"
+            variant="outlined"
+            disabled = {params.isBusy}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            label="N"
+            id="N_profile"
+            name="N_profile"
+            type="number"
+            inputProps={{ step:'any', min: 0 }}
+            value={isActive ? formState.N_profile : params.N_profile }
+            onChange={handleFieldChange}
+            onBlur={updateParameter}
+            margin="dense"
+            variant="outlined"
+            disabled = {params.isBusy}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            label="dl (mm)"
+            id="dl_profile"
+            name="dl_profile"
+            type="number"
+            inputProps={{ step:'any', min: 0 }}
+            value={isActive ? formState.dl_profile : params.dl_profile }
+            onChange={handleFieldChange}
+            onBlur={updateParameter}
+            margin="dense"
+            variant="outlined"
+            disabled = {params.isBusy}
           />
         </Grid>
       </Grid>

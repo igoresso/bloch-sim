@@ -33,23 +33,24 @@ const simulate = (state) => {
 
   let Mx_vec = [M0[0]];
   let My_vec = [M0[1]];
+  let Mxy_vec = [Math.sqrt(M0[0]**2 + M0[1]**2)];
   let Mz_vec = [M0[2]];
 
   t_vec.slice(1).forEach(t => {
     integrator.steps(Infinity, t)
     Mx_vec.push(integrator.y[0])
     My_vec.push(integrator.y[1])
+    Mxy_vec.push(Math.sqrt(integrator.y[0]**2+integrator.y[1]**2))
     Mz_vec.push(integrator.y[2])
   })
 
   return {
     params: {
-      ...state.params,
-      ...{ isBusy: false }
+      ...state.params
     },
     output: {
       ...state.output,
-      ...{ Mx_vec, My_vec, Mz_vec }
+      ...{ Mx_vec, My_vec, Mxy_vec, Mz_vec }
     }
   }
 }

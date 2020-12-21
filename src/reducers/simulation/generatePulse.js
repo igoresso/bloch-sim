@@ -1,4 +1,4 @@
-const generatePulse = (params, output) => {
+const generatePulse = params => {
   let t_vec = Array.from({ length: params.N_pulse }, (v, i) => i/(params.N_pulse-1)*params.T_pulse);
   let B1_x_vec = [];
   let B1_y_vec = [];
@@ -29,10 +29,10 @@ const generatePulse = (params, output) => {
       B1_y_vec = Array.from({ length: params.N_pulse }, (v, i) => 0);
       break
     default:
-      return output
+      return { t_vec, B1_x_vec, B1_y_vec }
   }
 
-  return { ...output, t_vec, B1_x_vec, B1_y_vec }
+  return { t_vec, B1_x_vec, B1_y_vec }
 };
 
 export default generatePulse;

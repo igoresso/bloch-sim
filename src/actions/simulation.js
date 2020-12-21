@@ -1,4 +1,4 @@
-import { UPDATE, SIMULATE, CLEAR, RESET } from './types';
+import { UPDATE, SIMULATE, ESTIMATE_PROFILE, CLEAR, RESET } from './types';
 
 export const update = (variable) => {
   return {
@@ -10,6 +10,12 @@ export const update = (variable) => {
 export const simulate = () => {
   return {
     type: SIMULATE,
+  };
+};
+
+export const estimateProfile = () => {
+  return {
+    type: ESTIMATE_PROFILE,
   };
 };
 

@@ -22,30 +22,41 @@ const Pulse = () => {
   const data = [
     {
       name: "B1_x",
-      type: "scatter",
+      type: "scattergl",
       mode: "lines",
       line: {
         width: 3,
-        color: '#a05195',
+        color: '#ff8f7b',
       },
       x: output.t_vec,
       y: output.B1_x_vec
     },
     {
       name: "B1_y",
-      type: "scatter",
+      type: "scattergl",
       mode: "lines",
       line: {
         width: 3,
-        color: '#f95d6a',
+        color: '#fbb84d',
       },
       x: output.t_vec,
       y: output.B1_y_vec
     },
+    {
+      name: "Gz",
+      type: "scattergl",
+      yaxis: 'y2',
+      mode: "lines",
+      line: {
+        width: 3,
+        color: '#02ffb3',
+      },
+      x: output.t_vec,
+      y: output.Gz_vec
+    },
   ];
 
   const layout = {
-    //margin: { b: 30, t: 30 },
     height: 450,
     paper_bgcolor: "transparent",
     plot_bgcolor: "transparent",
@@ -58,7 +69,6 @@ const Pulse = () => {
       },
       type: 'linear',
       range: [0, output.T_pulse],
-      spikethickness: 1,
       gridcolor: gridColor,
       zerolinecolor: zeroColor,
       linecolor: gridColor,
@@ -70,12 +80,20 @@ const Pulse = () => {
         standoff: 5
       },
       type: 'linear',
-      spikethickness: 1,
       gridcolor: gridColor,
       zerolinecolor: zeroColor,
       linecolor: gridColor,
       showspikes: false,
       showline: true
+    },
+    yaxis2: {
+      title: 'Gradient (mT/m)',
+      overlaying: 'y',
+      side: 'right',
+      gridcolor: gridColor,
+      zerolinecolor: zeroColor,
+      linecolor: gridColor,
+      showspikes: false
     },
     font: {
       color: textColor

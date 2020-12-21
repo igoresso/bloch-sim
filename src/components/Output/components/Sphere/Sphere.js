@@ -12,7 +12,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Sphere = () => {
-  console.log('Sphere')
   const output = useSelector(state => state.simulation.output);
 
   const classes = useStyles();

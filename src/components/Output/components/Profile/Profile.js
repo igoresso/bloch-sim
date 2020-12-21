@@ -9,9 +9,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Pulse = () => {
+const Profile = () => {
   const output = useSelector(state => state.simulation.output);
-  const T_pulse = useSelector(state => state.simulation.params.T_pulse);
+  const l_profile = useSelector(state => state.simulation.params.l_profile);
 
   const classes = useStyles();
 
@@ -20,53 +20,54 @@ const Pulse = () => {
   const zeroColor = theme.palette.type === "dark" ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.4)';
   const textColor = theme.palette.type === "dark" ? 'rgba(255, 255, 255, 1)' : 'rgba(0, 0, 0, 0.8)';
 
-
   const data = [
     {
       name: "M_xy",
       type: "scattergl",
       mode: "lines",
-      visible: "legendonly",
       line: {
         width: 3,
-        color: '#ff7eb8',
+        color: '#598cb1',
       },
-      x: output.t_vec,
-      y: output.Mxy_vec
+      x: output.z_vec,
+      y: output.SPxy_vec
     },
     {
       name: "M_x",
       type: "scattergl",
       mode: "lines",
+      visible: "legendonly",
       line: {
         width: 3,
-        color: '#ff8f7b',
+        color: '#958ad0',
       },
-      x: output.t_vec,
-      y: output.Mx_vec
+      x: output.z_vec,
+      y: output.SPx_vec
     },
     {
       name: "M_y",
       type: "scattergl",
       mode: "lines",
+      visible: "legendonly",
       line: {
         width: 3,
-        color: '#fbb84d',
+        color: '#eb79bb',
       },
-      x: output.t_vec,
-      y: output.My_vec
+      x: output.z_vec,
+      y: output.SPy_vec
     },
     {
       name: "M_z",
-      type: "scatter",
+      type: "scattergl",
       mode: "lines",
+      visible: "legendonly",
       line: {
         width: 3,
-        color: '#b7e15d',
+        color: '#ff7874',
       },
-      x: output.t_vec,
-      y: output.Mz_vec
-    },
+      x: output.z_vec,
+      y: output.SPz_vec
+    }
   ];
 
   const layout = {
@@ -74,14 +75,14 @@ const Pulse = () => {
     paper_bgcolor: "transparent",
     plot_bgcolor: "transparent",
     title: {
-      text: "Magnetisation"
+      text: "Slice Profile"
     },
     xaxis: {
       title: {
-        text: 'Time (ms)'
+        text: 'z (mm)'
       },
       type: 'linear',
-      range: [0, T_pulse],
+      range: [-l_profile/2, l_profile/2],
       gridcolor: gridColor,
       zerolinecolor: zeroColor,
       linecolor: gridColor,
@@ -89,14 +90,15 @@ const Pulse = () => {
     },
     yaxis: {
       title: {
-        text: 'Normalized Magnetisation',
+        text: 'Normalised Magnetisation',
         standoff: 5
       },
       type: 'linear',
       gridcolor: gridColor,
       zerolinecolor: zeroColor,
       linecolor: gridColor,
-      showspikes: false
+      showspikes: false,
+      showline: true
     },
     font: {
       color: textColor
@@ -112,4 +114,4 @@ const Pulse = () => {
   );
 };
 
-export default Pulse;
+export default Profile;

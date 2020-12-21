@@ -1,4 +1,5 @@
 import generatePulse from './generatePulse';
+import generateGradient from './generateGradient';
 
 const B0 = 3;                     // T
 const gamma = 42.5775;            // MHz/T
@@ -28,8 +29,12 @@ const shape_options = [
 ];
 const shape = 2;
 const lobes = 3;
-const sd = 1;       // s              
-const Gz = 30;      // mT/m
+const sd = 1;                             // s              
+const amp_Gz = 30;                        // mT/m
+const l_profile = 5;                      // mm
+const N_profile = 100;
+const dl_profile = l_profile/N_profile;   // mm
+
 
 const params = {
   B0,
@@ -44,15 +49,25 @@ const params = {
   shape,
   lobes,
   sd,
-  Gz,
+  amp_Gz,
+  l_profile,
+  N_profile,
+  dl_profile,
   isBusy: false
 }
 
 const output = {
   ...generatePulse(params),
+  ...generateGradient(params),
   Mx_vec: [],
   My_vec: [],
-  Mz_vec: []
+  Mxy_vec: [],
+  Mz_vec: [],
+  z_vec: [],
+  SPx_vec: [],
+  SPy_vec: [],
+  SPxy_vec: [],
+  SPz_vec: []
 };
 
 const initialState = {
