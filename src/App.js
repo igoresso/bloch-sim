@@ -32,7 +32,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <Switch>
             <Redirect
               from="\/[\s\S]+"
