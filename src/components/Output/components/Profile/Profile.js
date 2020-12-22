@@ -102,6 +102,11 @@ const Profile = () => {
     },
     font: {
       color: textColor
+    },
+    modebar: {
+      bgcolor: 'transparent',
+      color: gridColor,
+      activecolor: zeroColor
     }
   }
 
