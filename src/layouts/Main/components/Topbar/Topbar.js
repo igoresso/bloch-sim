@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { toggleTheme } from '../../../../actions/presentation';
 import { makeStyles } from '@material-ui/styles';
 import { AppBar, Toolbar, Tooltip, IconButton, Typography, Hidden } from '@material-ui/core';
-import { Menu, Help, Brightness4 } from '@material-ui/icons';
+import { Menu, Help, Brightness4, GitHub } from '@material-ui/icons';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -50,6 +50,18 @@ const Topbar = props => {
             <Brightness4 />
           </IconButton>
         </Tooltip>
+        <Tooltip title="GitHub page">
+          <IconButton
+            edge="end"
+            color="inherit"
+            className={classes.button}
+            href="https://github.com/igoresso/bloch-sim"
+            target="_blank"
+            aria-label="GitHub page"
+          >
+            <GitHub />
+          </IconButton>
+        </Tooltip>
         <Tooltip title="User Manual">
           <IconButton
             edge="end"
@@ -61,7 +73,6 @@ const Topbar = props => {
             <Help />
           </IconButton>
         </Tooltip>
-        
         <Hidden mdUp>
           <IconButton
             edge="end"

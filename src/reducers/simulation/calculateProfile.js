@@ -59,8 +59,7 @@ const estimateProfile = (state) => {
 
   return {
     params: {
-      ...state.params,
-      ...{ isBusy: false }
+      ...state.params
     },
     output: {
       ...state.output,

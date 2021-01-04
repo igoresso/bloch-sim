@@ -1,17 +1,23 @@
-import { UPDATE, SIMULATE, ESTIMATE_PROFILE, CLEAR, RESET } from '../../actions/types';
+import { 
+  UPDATE,
+  CALCULATE_MAGNETISATION,
+  CALCULATE_PROFILE,
+  CLEAR,
+  RESET
+} from '../../actions/types';
 import initialState from './initialState';
 import update from './update';
-import simulate from './simulate';
-import estimateProfile from './estimateProfile';
+import calculateMagnetisation from './calculateMagnetisation';
+import calculateProfile from './calculateProfile';
 
 const simulatorReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE:
       return update(state, action.payload);
-    case SIMULATE:
-      return simulate(state);
-    case ESTIMATE_PROFILE:
-      return estimateProfile(state);
+    case CALCULATE_MAGNETISATION:
+      return calculateMagnetisation(state);
+    case CALCULATE_PROFILE:
+      return calculateProfile(state);
     case CLEAR:
         return {
           params: { ...state.params },

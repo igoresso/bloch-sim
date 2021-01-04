@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { update, simulate, estimateProfile, clear } from '../../actions/simulation';
+import { update, simulate } from '../../actions/simulation';
 import { Grid, TextField, Typography, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
@@ -13,7 +13,8 @@ const useStyles = makeStyles(theme => ({
 const Controls = () => {
   const params = useSelector(state => state.simulation.params);
   const [formState, setFormState] = useState(params);
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setActive] = useState(false);
+  const [isWorking, setWorking] = useState(false);
   const dispatch = useDispatch();
 
   const classes = useStyles();
@@ -24,7 +25,7 @@ const Controls = () => {
         ...params,
         ...{[e.target.name]: Number(e.target.value)}
       })
-      setIsActive(true);
+      setActive(true);
     }
   };
 
@@ -33,18 +34,14 @@ const Controls = () => {
       dispatch(update({
         [e.target.name]: Number(e.target.value)
       }));
-      dispatch(clear());
-      setIsActive(false);
+      setActive(false);
     }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(update({
-      isBusy: true
-    }));
-    dispatch(simulate())
-    dispatch(estimateProfile())
+    setWorking(true)
+    dispatch(simulate()).then(setWorking(false))
   }
 
   return (
@@ -65,7 +62,7 @@ const Controls = () => {
             onBlur={updateParameter}
             margin="dense"
             variant="outlined"
-            disabled = {params.isBusy}
+            disabled = {isWorking}
           />
         </Grid>
         <Grid item xs={6}>
@@ -80,7 +77,7 @@ const Controls = () => {
             onBlur={updateParameter}
             margin="dense"
             variant="outlined"
-            disabled = {params.isBusy}
+            disabled = {isWorking}
           />
         </Grid>
         <Grid item xs={6}>
@@ -95,7 +92,7 @@ const Controls = () => {
             onBlur={updateParameter}
             margin="dense"
             variant="outlined"
-            disabled = {params.isBusy}
+            disabled = {isWorking}
           />
         </Grid>
         <Grid item xs={6}>
@@ -110,7 +107,7 @@ const Controls = () => {
             onBlur={updateParameter}
             margin="dense"
             variant="outlined"
-            disabled = {params.isBusy}
+            disabled = {isWorking}
           />
         </Grid>
       </Grid>
@@ -130,7 +127,7 @@ const Controls = () => {
             onBlur={updateParameter}
             margin="dense"
             variant="outlined"
-            disabled = {params.isBusy}
+            disabled = {isWorking}
           />
         </Grid>
         <Grid item xs={6}>
@@ -145,7 +142,7 @@ const Controls = () => {
             onBlur={updateParameter}
             margin="dense"
             variant="outlined"
-            disabled = {params.isBusy}
+            disabled = {isWorking}
           />
         </Grid>
         <Grid item xs={6}>
@@ -160,7 +157,7 @@ const Controls = () => {
             onBlur={updateParameter}
             margin="dense"
             variant="outlined"
-            disabled = {params.isBusy}
+            disabled = {isWorking}
           />
         </Grid>
         <Grid item xs={6}>
@@ -175,7 +172,7 @@ const Controls = () => {
             onBlur={updateParameter}
             margin="dense"
             variant="outlined"
-            disabled = {params.isBusy}
+            disabled = {isWorking}
           />
         </Grid>
         <Grid item xs={6}>
@@ -191,7 +188,7 @@ const Controls = () => {
             onChange={updateParameter}
             margin="dense"
             variant="outlined"
-            disabled = {params.isBusy}
+            disabled = {isWorking}
           >
             {params.shape_options.map((option) => (
               <option key={option.value} value={option.value}>
@@ -212,7 +209,7 @@ const Controls = () => {
             onBlur={updateParameter}
             margin="dense"
             variant="outlined"
-            disabled = {params.shape!==2 || params.isBusy}
+            disabled = {params.shape!==2 || isWorking}
           />
         </Grid>
         <Grid item xs={6}>
@@ -227,7 +224,7 @@ const Controls = () => {
             onBlur={updateParameter}
             margin="dense"
             variant="outlined"
-            disabled = {params.shape!==4 || params.isBusy}
+            disabled = {params.shape!==4 || isWorking}
           />
         </Grid>
       </Grid>
@@ -247,6 +244,7 @@ const Controls = () => {
             onBlur={updateParameter}
             margin="dense"
             variant="outlined"
+            disabled = {isWorking}
           />
         </Grid>
       </Grid>
@@ -266,7 +264,7 @@ const Controls = () => {
             onBlur={updateParameter}
             margin="dense"
             variant="outlined"
-            disabled = {params.isBusy}
+            disabled = {isWorking}
           />
         </Grid>
         <Grid item xs={6}>
@@ -281,7 +279,7 @@ const Controls = () => {
             onBlur={updateParameter}
             margin="dense"
             variant="outlined"
-            disabled = {params.isBusy}
+            disabled = {isWorking}
           />
         </Grid>
         <Grid item xs={6}>
@@ -296,7 +294,7 @@ const Controls = () => {
             onBlur={updateParameter}
             margin="dense"
             variant="outlined"
-            disabled = {params.isBusy}
+            disabled = {isWorking}
           />
         </Grid>
       </Grid>
@@ -306,11 +304,11 @@ const Controls = () => {
         size="large"
         type="submit"
         onClick={handleSubmit}
-        disabled={params.isBusy}
+        disabled={isWorking}
         fullWidth
         disableElevation
       >
-        {params.isBusy ?  'Working' : 'Simulate'}
+        {isWorking ?  'Working' : 'Simulate'}
       </Button>
     </form>
   );

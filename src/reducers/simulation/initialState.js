@@ -53,7 +53,6 @@ const params = {
   l_profile,
   N_profile,
   dl_profile,
-  isBusy: false
 }
 
 const output = {

@@ -89,7 +89,7 @@ const Pulse = () => {
     },
     yaxis: {
       title: {
-        text: 'Normalized Magnetisation',
+        text: 'Normalised Magnetisation',
         standoff: 5
       },
       type: 'linear',
