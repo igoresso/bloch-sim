@@ -47,7 +47,7 @@ const Footer = props => {
         color="textSecondary"
         variant="body2"
       >
-        {`© 2020-${date.getFullYear()}`}
+        {`© ${date.getFullYear()}`}
       </Typography>
     </footer>
   );

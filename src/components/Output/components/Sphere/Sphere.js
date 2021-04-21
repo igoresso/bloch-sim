@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Plot from 'react-plotly.js';
 import { makeStyles, useTheme } from '@material-ui/styles';
+import Plot from '../Plot';
 
 import generateSphere from './generateSphere';
 
@@ -103,11 +103,12 @@ const Sphere = () => {
 
   const config = {
     responsive: true,
-    modeBarButtonsToRemove: ['hoverClosest3d']
+    modeBarButtonsToRemove: ['hoverClosest3d'],
+    displaylogo: false
   }
 
   return (
-    <Plot data={data} layout={layout} config={config} className={classes.plot} />
+    <Plot data={data} layout={layout} config={config} className={classes.plot} useResizeHandler={true} />
   );
 };
 

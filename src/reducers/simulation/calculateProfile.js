@@ -49,6 +49,7 @@ const estimateProfile = (state) => {
     const dt0 = dt;
 
     let integrator = ode45(M0, bloch, t0, dt0 )
+
     integrator.steps(Infinity, T_pulse)
     
     SPx_vec.push(integrator.y[0])

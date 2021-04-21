@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Plot from 'react-plotly.js';
 import { makeStyles, useTheme } from '@material-ui/styles';
+import Plot from '../Plot';
 
 const useStyles = makeStyles(theme => ({
   plot: {
@@ -106,11 +106,12 @@ const Pulse = () => {
   }
 
   const config = {
-    responsive: true
+    responsive: true,
+    displaylogo: false
   }
 
   return (
-    <Plot data={data} layout={layout} config={config} className={classes.plot} />
+    <Plot data={data} layout={layout} config={config} className={classes.plot} useResizeHandler={true} />
   );
 };
 

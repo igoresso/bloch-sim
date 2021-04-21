@@ -1,10 +1,4 @@
 import React from 'react'
-import { 
-  BrowserRouter as Router,
-  Switch,
-  Redirect,
-  Route
-} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
   createMuiTheme,
@@ -32,24 +26,11 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-        <Router basename={process.env.PUBLIC_URL}>
-          <Switch>
-            <Redirect
-              from="\/[\s\S]+"
-              to="/"
-            />
-            <Route
-              exact
-              path="/"
-            >
-            <MainLayout
-              sidebarContent = {<Controls />}
-              mainContent = {<Output />}
-              helpContent = {<Help />}
-            />
-          </Route>
-        </Switch>
-      </Router>
+      <MainLayout
+        sidebarContent = {<Controls />}
+        mainContent = {<Output />}
+        helpContent = {<Help />}
+      />
     </ThemeProvider>
   );
 };

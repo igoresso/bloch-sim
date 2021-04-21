@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { update, simulate } from '../../actions/simulation';
+import { update, simulate, clear } from '../../actions/simulation';
 import { Grid, TextField, Typography, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
@@ -15,6 +15,7 @@ const Controls = () => {
   const [formState, setFormState] = useState(params);
   const [isActive, setActive] = useState(false);
   const [isWorking, setWorking] = useState(false);
+  
   const dispatch = useDispatch();
 
   const classes = useStyles();
@@ -33,7 +34,7 @@ const Controls = () => {
     if (Number(e.target.value) !== params[e.target.name]) {
       dispatch(update({
         [e.target.name]: Number(e.target.value)
-      }));
+      })).then(dispatch(clear()));
       setActive(false);
     }
   }

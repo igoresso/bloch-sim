@@ -1,7 +1,7 @@
-import React from 'react';
+import React  from 'react';
 import { useSelector } from 'react-redux';
-import Plot from 'react-plotly.js';
 import { makeStyles, useTheme } from '@material-ui/styles';
+import Plot from '../Plot';
 
 const useStyles = makeStyles(theme => ({
   plot: {
@@ -10,8 +10,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Profile = () => {
-  const output = useSelector(state => state.simulation.output);
-  const l_profile = useSelector(state => state.simulation.params.l_profile);
+  const {
+    SPx_vec,
+    SPy_vec,
+    SPxy_vec,
+    SPz_vec,
+    z_vec
+  } = useSelector(state => state.simulation.output);
+  const { l_profile } = useSelector(state => state.simulation.params);
 
   const classes = useStyles();
 
@@ -29,8 +35,8 @@ const Profile = () => {
         width: 3,
         color: '#ff7eb8',
       },
-      x: output.z_vec,
-      y: output.SPxy_vec
+      x: z_vec,
+      y: SPxy_vec,
     },
     {
       name: "M_x",
@@ -41,8 +47,8 @@ const Profile = () => {
         width: 3,
         color: '#ff8f7b',
       },
-      x: output.z_vec,
-      y: output.SPx_vec
+      x: z_vec,
+      y: SPx_vec,
     },
     {
       name: "M_y",
@@ -53,8 +59,8 @@ const Profile = () => {
         width: 3,
         color: '#fbb84d',
       },
-      x: output.z_vec,
-      y: output.SPy_vec
+      x: z_vec,
+      y: SPy_vec,
     },
     {
       name: "M_z",
@@ -65,8 +71,8 @@ const Profile = () => {
         width: 3,
         color: '#b7e15d',
       },
-      x: output.z_vec,
-      y: output.SPz_vec
+      x: z_vec,
+      y: SPz_vec,
     }
   ];
 
@@ -111,11 +117,17 @@ const Profile = () => {
   }
 
   const config = {
-    responsive: true
+    responsive: true,
+    displaylogo: false
   }
 
   return (
-    <Plot data={data} layout={layout} config={config} className={classes.plot} />
+    <Plot
+      data={data}
+      layout={layout}
+      config={config}
+      className={classes.plot}
+      useResizeHandler={true} />
   );
 };
 

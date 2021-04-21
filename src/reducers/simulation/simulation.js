@@ -20,7 +20,12 @@ const simulatorReducer = (state = initialState, action) => {
       return calculateProfile(state);
     case CLEAR:
         return {
-          params: { ...state.params },
+          params: {
+            ...state.params,
+            ...{
+              current_index: state.params.N_pulse-1
+            }
+          },
           output: {
             ...state.output,
             ...{ 

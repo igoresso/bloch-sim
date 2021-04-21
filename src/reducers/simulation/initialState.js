@@ -7,7 +7,7 @@ const T1 = 950;                   // ms
 const T2 =  100;                  // ms
 const T_pulse = 10;               // ms
 const N_pulse = 100;
-const dt_pulse = T_pulse/N_pulse; // ms
+const dt_pulse = T_pulse/(N_pulse-1); // ms
 const amp_pulse = 0.001;          // mT
 const shape_options = [
   {
@@ -33,8 +33,9 @@ const sd = 1;                             // s
 const amp_Gz = 30;                        // mT/m
 const l_profile = 5;                      // mm
 const N_profile = 100;
-const dl_profile = l_profile/N_profile;   // mm
-
+const dl_profile = l_profile/(N_profile-1);   // mm
+const isPlaying = false;
+const current_index = N_pulse-1;
 
 const params = {
   B0,
@@ -53,6 +54,8 @@ const params = {
   l_profile,
   N_profile,
   dl_profile,
+  isPlaying,
+  current_index
 }
 
 const output = {

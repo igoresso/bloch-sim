@@ -7,11 +7,11 @@ import {
 } from './types';
 
 export const update = variable => dispatch => {
-  Promise.resolve(dispatch({
+  dispatch({
     type: UPDATE,
     payload: variable
-  }))
-    .then(() => dispatch(clear()));
+  });
+  return Promise.resolve();
 };
 
 export const calculateMagnetisation = () => dispatch => {

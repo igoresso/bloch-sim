@@ -35,21 +35,22 @@ const update = (state, payload) => {
         params = {
           ...state.params,
           ...{ [key]: value },
-          ...{ dt_pulse: value/state.params.N_pulse }
+          ...{ dt_pulse: value/(state.params.N_pulse-1) }
         };
         break
       case 'N_pulse':
         params = {
           ...state.params,
           ...{ [key]: value },
-          ...{ dt_pulse: state.params.T_pulse/value }
+          ...{ dt_pulse: state.params.T_pulse/(value-1) },
+          ...{ current_index: value-1 }
         };
         break
       case 'dt_pulse':
         params = {
           ...state.params,
           ...{ [key]: value },
-          ...{ T_pulse: state.params.N_pulse*value }
+          ...{ T_pulse: (state.params.N_pulse-1)*value }
         };
         break
       case 'amp_pulse':
@@ -86,29 +87,35 @@ const update = (state, payload) => {
         params = {
           ...state.params,
           ...{ [key]: value },
-          ...{ dl_profile: value/state.params.N_profile }
+          ...{ dl_profile: value/(state.params.N_profile-1) }
         };
         break
       case 'N_profile':
         params = {
           ...state.params,
           ...{ [key]: value },
-          ...{ dl_profile: state.params.l_profile/value }
+          ...{ dl_profile: state.params.l_profile/(value-1) }
         };
         break
       case 'dl_profile':
         params = {
           ...state.params,
           ...{ [key]: value },
-          ...{ dl_profile: state.params.N_profile*value }
+          ...{ dl_profile: (state.params.N_profile-1)*value }
         };
         break
       case 'isBusy':
-          params = {
-            ...state.params,
-            ...{ [key]: value }
-          }
-          break
+        params = {
+          ...state.params,
+          ...{ [key]: value }
+        }
+        break
+      case 'current_index':
+        params = {
+          ...state.params,
+          ...{ [key]: value }
+        }
+        break
       default:
         return state;
     }
