@@ -25,7 +25,7 @@ const Footer = props => {
         </Grid>
         <Grid item>
           <Link
-            href="https://github.com/igoresso/bloch-sim"
+            href="https://github.com/iggstatic/bloch-sim"
             color="textPrimary"
             target="_blank"
           >
@@ -34,7 +34,7 @@ const Footer = props => {
         </Grid>
         <Grid item>
           <Link
-            href="https://github.com/igoresso/bloch-sim/issues"
+            href="https://github.com/iggstatic/bloch-sim/issues"
             color="textPrimary"
             target="_blank"
           >

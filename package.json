@@ -1,7 +1,7 @@
 {
   "name": "bloch-sim",
   "description": "Bloch Equation Simulator",
-  "homepage": "http://igoresso.github.io/bloch-sim",
+  "homepage": "http://iggstatic.github.io/bloch-sim",
   "version": "0.3.0",
   "author": "Igor Tyshchenko",
   "private": true,

@@ -55,7 +55,7 @@ const Topbar = props => {
             edge="end"
             color="inherit"
             className={classes.button}
-            href="https://github.com/igoresso/bloch-sim"
+            href="https://github.com/iggstatic/bloch-sim"
             target="_blank"
             aria-label="GitHub page"
           >
